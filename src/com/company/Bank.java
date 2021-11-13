@@ -18,14 +18,18 @@ public class Bank implements IBank{
 
     @Override
     public void CloseAccount(int accountNumber) {
-        for (IAccount x : this.Accounts){
+        IAccount temp = null;
+        for (IAccount x :  this.Accounts){
             if(x.GetAccountNumber() == accountNumber){
                 if(x.GetCurrentBalance() >= 0){
-                    this.Accounts.remove(x);
+                    temp = x;
                 }else{
                     System.out.println("this account cannot be closed due to debt");
                 }
             }
+        }
+        if(temp != null){
+            this.Accounts.remove(temp);
         }
 
     }
